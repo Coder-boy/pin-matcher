@@ -12,37 +12,37 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="pin-generator half-width">
-                    <input class="form-control" type="text">
-                    <button class="generate-btn">Generate Pin</button>
+                    <input id="generator-screen" class="form-control" type="text" disabled>
+                    <button id="generator-btn" class="generate-btn">Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input class="form-control" type="text">
+                    <input name="screen" id="pad-screen" class="form-control" type="text" disabled>
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
-                              <div class="button">7</div>
-                              <div class="button">8</div>
-                              <div class="button">9</div>
+                              <div class="button"  onclick="getNumber('7')">7</div>
+                              <div class="button"  onclick="getNumber('8')">8</div>
+                              <div class="button" onclick="getNumber('9')">9</div>
                             </div>
                             <div class="calc-button-row">
-                              <div class="button">4</div>
-                              <div class="button">5</div>
-                              <div class="button">6</div>
+                              <div class="button"  onclick="getNumber('4')">4</div>
+                              <div class="button" onclick="getNumber('5')">5</div>
+                              <div class="button" onclick="getNumber('6')">6</div>
                             </div>
                             <div class="calc-button-row">
-                              <div class="button">1</div>
-                              <div class="button">2</div>
-                              <div class="button">3</div>
+                              <div class="button" onclick="getNumber('1')">1</div>
+                              <div class="button" onclick="getNumber('2')">2</div>
+                              <div class="button" onclick="getNumber('3')">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div class="button"><</div>
-                                <div class="button">0</div>
-                                <div class="button">C</div>
+                                <div class="button" id="backspace"><</div>
+                                <div class="button" onclick="getNumber('0')">0</div>
+                                <div class="button" id="clear">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn">Submit</button>
+                                <button id="submit-button" type="submit" class="submit-btn">Submit</button>
                                 <p class="action-left">3 try left</p>
                             </div>
                     </div>
@@ -50,9 +50,77 @@
             </div>
         </div>
         <div class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p id="un-match" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="match" class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
+
+    <script>
+        const generatorBtn = document.getElementById("generator-btn");
+        generatorBtn.addEventListener("click" , function () {
+            const generatorScreen = document.getElementById("generator-screen").value;
+            
+            document.getElementById("generator-screen").value = getRandomNumber(1000,9999);
+        })
+        let getRandomNumber = function (start, range) {
+            let getRandom = Math.floor((Math.random() * range)+
+            start);
+            while (getRandom > range) {
+                getRandom = Math.floor((Math.random() * range)+
+            start);
+            }
+            return getRandom;
+        };
+        
+        function getNumber (number) {
+            const padScreen = document.getElementById("pad-screen");
+            padScreen.value += number;
+
+        };
+
+        const submitBtn = document.getElementById("submit-button");
+        submitBtn.addEventListener("click" , function () {
+            const generatorScreen = document.getElementById("generator-screen").value;
+            const padScreen = document.getElementById("pad-screen").value;
+            if (generatorScreen == padScreen) {
+                const match = document.getElementById("match").style.display= 'block';
+            }else{
+                const unMatch = document.getElementById("un-match").style.display='block';
+            }
+        });
+        const clearBtn = document.getElementById("clear");
+        clearBtn.addEventListener("click" ,function  () {
+            const padScreen = document.getElementById("pad-screen");
+            if(this.id=="clear"){
+                padScreen.value=("");
+                
+
+            }
+           
+            
+                
+                
+         } );
+        // //  const back = document.getElementById("backspace");
+        // // clearBtn.addEventListener("click" ,function  () {
+            
+            
+        // //     if (this.id=="backspace") {
+        // //  padScreen  = number.toString();
+        // // const padScreen = document.getElementById("pad-screen");
+        // //  if (padScreen) {
+        // //      padScreen=padScreen.substr(0,padScreen.length-1);
+        // //  }
+           
+
+           
+           
+            
+                
+                
+        //  }} );
+
+         
+    </script>
 </body>
 </html>

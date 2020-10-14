@@ -27,6 +27,7 @@ body {
     font-size: 20px;
     text-align: center;
 }
+
 .generate-btn:focus{
     outline: none;
     box-shadow: none;
@@ -42,6 +43,11 @@ input[type='text']{
     height: 50px;
     padding: 10px;
 }
+input#pad-screen , input#generator-screen {
+    color: black;
+    text-align: center;
+}
+
 input[type='text']:focus {
     background-color: #3D4153;
     color: #fff;
@@ -103,4 +109,10 @@ color: #E0B612;
 .action-left {
     color: #FF3C5F;
     margin-top: 10px;
+}
+#un-match{
+    display: none;
+}
+#match{
+    display: none;
 }
