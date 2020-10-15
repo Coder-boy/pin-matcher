@@ -37,7 +37,7 @@
                               <div class="button" onclick="getNumber('3')">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div class="button" id="backspace"><</div>
+                                <div class="button" id="backspace" onclick="backspace ()"><</div>
                                 <div class="button" onclick="getNumber('0')">0</div>
                                 <div class="button" id="clear">C</div>
                             </div>
@@ -85,8 +85,14 @@
             if (generatorScreen == padScreen) {
                 const match = document.getElementById("match").style.display= 'block';
             }else{
-                const unMatch = document.getElementById("un-match").style.display='block';
+                const unMatch = document.getElementById("match").style.display='none';
+            };
+            if (generatorScreen != padScreen) {
+                const match = document.getElementById("un-match").style.display= 'block';
+            }else{
+                const unMatch = document.getElementById("un-match").style.display='none';
             }
+
         });
         const clearBtn = document.getElementById("clear");
         clearBtn.addEventListener("click" ,function  () {
@@ -101,16 +107,11 @@
                 
                 
          } );
-        // //  const back = document.getElementById("backspace");
-        // // clearBtn.addEventListener("click" ,function  () {
+                function backspace () {
+            const padScreen = document.getElementById("pad-screen");
+            padScreen.value = padScreen.value.slice(0,-1);
             
-            
-        // //     if (this.id=="backspace") {
-        // //  padScreen  = number.toString();
-        // // const padScreen = document.getElementById("pad-screen");
-        // //  if (padScreen) {
-        // //      padScreen=padScreen.substr(0,padScreen.length-1);
-        // //  }
+         
            
 
            
@@ -118,7 +119,7 @@
             
                 
                 
-        //  }} );
+         };
 
          
     </script>
