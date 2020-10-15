@@ -13,12 +13,12 @@
             <div class="col-md-6">
                 <div class="pin-generator half-width">
                     <input id="generator-screen" class="form-control" type="text" disabled>
-                    <button id="generator-btn" class="generate-btn">Generate Pin</button>
+                    <button  class="generate-btn" onclick="generatorBtn()">Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input name="screen" id="pad-screen" class="form-control" type="text" disabled>
+                    <input name="screen" id="pin-screen" class="form-control" type="text" disabled>
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
@@ -39,10 +39,10 @@
                             <div class="calc-button-row">
                                 <div class="button" id="backspace" onclick="backspace ()"><</div>
                                 <div class="button" onclick="getNumber('0')">0</div>
-                                <div class="button" id="clear">C</div>
+                                <div class="button" onclick="clearBtn()">C</div>
                             </div>
                             <div>
-                                <button id="submit-button" type="submit" class="submit-btn">Submit</button>
+                                <button  type="submit" class="submit-btn" onclick="submitBtn()">Submit</button>
                                 <p class="action-left">3 try left</p>
                             </div>
                     </div>
@@ -56,12 +56,13 @@
     </div>
 
     <script>
-        const generatorBtn = document.getElementById("generator-btn");
-        generatorBtn.addEventListener("click" , function () {
+      function generatorBtn () {
+            
             const generatorScreen = document.getElementById("generator-screen").value;
             
             document.getElementById("generator-screen").value = getRandomNumber(1000,9999);
-        })
+           
+        };
         let getRandomNumber = function (start, range) {
             let getRandom = Math.floor((Math.random() * range)+
             start);
@@ -73,53 +74,43 @@
         };
         
         function getNumber (number) {
-            const padScreen = document.getElementById("pad-screen");
-            padScreen.value += number;
+            const pinScreen = document.getElementById("pin-screen");
+            pinScreen.value += number;
 
         };
 
-        const submitBtn = document.getElementById("submit-button");
-        submitBtn.addEventListener("click" , function () {
+        function submitBtn () {
+
             const generatorScreen = document.getElementById("generator-screen").value;
-            const padScreen = document.getElementById("pad-screen").value;
-            if (generatorScreen == padScreen) {
-                const match = document.getElementById("match").style.display= 'block';
+           
+            const pinScreen = document.getElementById("pin-screen").value;
+            if (generatorScreen == pinScreen) {
+                 document.getElementById("match").style.display= 'block';
+                document.getElementById("generator-screen").value=("");
             }else{
-                const unMatch = document.getElementById("match").style.display='none';
+                 document.getElementById("match").style.display='none';
             };
-            if (generatorScreen != padScreen) {
-                const match = document.getElementById("un-match").style.display= 'block';
+            if (generatorScreen != pinScreen) {
+                 document.getElementById("un-match").style.display= 'block';
+                document.getElementById("pin-screen").value=("");
             }else{
-                const unMatch = document.getElementById("un-match").style.display='none';
-            }
+                 document.getElementById("un-match").style.display='none';
+            };
 
-        });
-        const clearBtn = document.getElementById("clear");
-        clearBtn.addEventListener("click" ,function  () {
-            const padScreen = document.getElementById("pad-screen");
-            if(this.id=="clear"){
-                padScreen.value=("");
-                
 
-            }
-           
-            
-                
-                
-         } );
-                function backspace () {
-            const padScreen = document.getElementById("pad-screen");
-            padScreen.value = padScreen.value.slice(0,-1);
-            
-         
+        };
+
+        function clearBtn  () {
+            const pinScreen = document.getElementById("pin-screen");
+            pinScreen.value=("");
            
 
-           
-           
-            
-                
-                
-         };
+        };
+
+        function backspace () {
+            const pinScreen = document.getElementById("pin-screen");
+            pinScreen.value = pinScreen.value.slice(0,-1);        
+        };
 
          
     </script>

@@ -43,7 +43,7 @@ input[type='text']{
     height: 50px;
     padding: 10px;
 }
-input#pad-screen , input#generator-screen {
+input#pin-screen , input#generator-screen {
     color: black;
     text-align: center;
 }
@@ -110,9 +110,11 @@ color: #E0B612;
     color: #FF3C5F;
     margin-top: 10px;
 }
-#un-match{
+#un-match , #match{
     display: none;
 }
-#match{
+
+ #try2 , #try3{
     display: none;
 }
+
